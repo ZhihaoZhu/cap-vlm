@@ -10,7 +10,7 @@ at the <strong>continual pre-training</strong> stage — before any task-specifi
 </p>
 
 <p>
-<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"></a>
 <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-green.svg" alt="Python 3.10+"></a>
 <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-2.1+-red.svg" alt="PyTorch"></a>
 <a href="https://huggingface.co/docs/accelerate"><img src="https://img.shields.io/badge/Accelerate-DeepSpeed-orange.svg" alt="Accelerate"></a>
@@ -328,4 +328,4 @@ CAP-VLM/
 
 ## License
 
-Apache 2.0
+MIT
