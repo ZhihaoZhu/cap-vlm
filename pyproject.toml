@@ -3,9 +3,9 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agentcpt"
+name = "agentforge-vlm"
 version = "0.1.0"
-description = "AgentCPT: Agentic Continual Pre-training for Vision-Language Foundation Models via Perceive-Predict-Verify"
+description = "AgentForge-VLM: Forging Agentic Vision-Language Models through Perceive-Predict-Verify Continual Pre-Training"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
