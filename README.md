@@ -1,8 +1,8 @@
 <div align="center">
 
-<h1>AgentForge-VLM</h1>
+<h1>CAP-VLM</h1>
 
-<h3>Forging Agentic Vision-Language Models<br/>through Perceive-Predict-Verify Continual Pre-Training</h3>
+<h3>Continual Agentic Pre-Training for Vision-Language Models<br/>via Perceive-Predict-Verify</h3>
 
 <p>
 <em>The first framework that instills <strong>agentic visual reasoning</strong> into VLMs<br/>
@@ -43,19 +43,19 @@ at the <strong>continual pre-training</strong> stage — before any task-specifi
 
 Current Vision-Language Models are trained on static image-text pairs, then fine-tuned for agentic tasks. This creates a fundamental gap: **the VLM never learns how to actively use vision for agency.** It can describe what it sees, but cannot decide *where to look*, *what will happen next*, or *whether its understanding is correct*.
 
-**AgentForge-VLM** closes this gap by inserting an **Agentic Continual Pre-Training** stage into the VLM training pipeline. During this stage, the model learns three foundational agentic capabilities through 100B+ tokens of scalable synthetic data — **before any task-specific training begins.**
+**CAP-VLM** closes this gap by inserting a **Continual Agentic Pre-Training** stage into the VLM training pipeline. During this stage, the model learns three foundational agentic capabilities through 100B+ tokens of scalable synthetic data — **before any task-specific training begins.**
 
 ### Why Continual Pre-Training for VLM Agents?
 
 Existing approaches build VLM agents through SFT or RL alone, which forces the model to simultaneously learn agentic capabilities *and* align to specific tasks — creating optimization tension ([AgentFounder, 2025](https://arxiv.org/abs/2509.13310) demonstrated this for text-only LLMs; [Magma, 2025](https://arxiv.org/abs/2502.13130) showed the perception-action gap for VLMs).
 
-**AgentForge-VLM** resolves this by forging agentic visual reasoning as a **foundational VLM capability** during continual pre-training, giving downstream SFT/RL a dramatically stronger starting point.
+**CAP-VLM** resolves this by instilling agentic visual reasoning as a **foundational VLM capability** during continual pre-training, giving downstream SFT/RL a dramatically stronger starting point.
 
-### The AgentForge Training Pipeline
+### The CAP-VLM Training Pipeline
 
 ```
                          ┌────────────────────────────────────────────────────┐
-                         │        AgentForge-VLM Continual Pre-Training       │
+                         │      CAP-VLM: Continual Agentic Pre-Training       │
                          │                                                    │
   VLM Base Model  ────►  │   Stage 1 (32K ctx)   ───►   Stage 2 (128K ctx)   │  ────►  Agentic
   (Qwen2-VL, etc.)       │   ~200B tokens                ~100B tokens         │         SFT / RL
@@ -71,7 +71,7 @@ Existing approaches build VLM agents through SFT or RL alone, which forces the m
 
 ## The PPV Loop
 
-At the core of AgentForge-VLM is the **Perceive-Predict-Verify** loop — a unified cognitive architecture that trains three mutually reinforcing agentic capabilities:
+At the core of CAP-VLM is the **Perceive-Predict-Verify** loop — a unified cognitive architecture that trains three mutually reinforcing agentic capabilities:
 
 ```
        ┌──────────────────────────────────────────────────────────────────────┐
@@ -92,7 +92,7 @@ At the core of AgentForge-VLM is the **Perceive-Predict-Verify** loop — a unif
 |:--|:--|:--|
 | **Perceive** | Goal-directed visual attention — deciding *where* to look and *what* to extract based on the current task | Agents can't process every pixel equally. They must selectively attend to task-relevant visual elements. |
 | **Predict** | Anticipating how visual scenes change after actions — an implicit world model in natural language | Before clicking a button, an agent should anticipate the result. This enables look-ahead planning. |
-| **Verify** | Comparing expected vs. actual outcomes and self-correcting when predictions are wrong | Robust agents detect their own errors. AgentForge-VLM trains this with intentionally wrong hypotheses. |
+| **Verify** | Comparing expected vs. actual outcomes and self-correcting when predictions are wrong | Robust agents detect their own errors. CAP-VLM trains this with intentionally wrong hypotheses. |
 
 ### Why These Three Are Synergistic
 
@@ -278,7 +278,7 @@ python scripts/evaluate.py --model-path checkpoints/sft/final \
 
 | Experiment | Research Question |
 |:--|:--|
-| AgentForge + SFT vs. Vanilla VLM + SFT | Does agentic continual pre-training improve agentic performance? |
+| CAP-VLM + SFT vs. Vanilla VLM + SFT | Does continual agentic pre-training improve agentic performance? |
 | APC-only vs. VSTP-only vs. HVC-only | Which PPV capability contributes most? |
 | All-three vs. pairwise combinations | Are the three capabilities synergistic? |
 | Stage 1 only vs. Stage 1 + 2 | Does progressive long-context training help? |
@@ -299,7 +299,7 @@ python scripts/evaluate.py --model-path checkpoints/sft/final \
 ## Project Structure
 
 ```
-AgentForge-VLM/
+CAP-VLM/
 ├── configs/                  # Training configurations
 │   ├── base.yaml             #   Shared hyperparameters
 │   ├── stage1.yaml           #   Stage 1 CPT (32K ctx, ~200B tokens)
@@ -320,8 +320,8 @@ AgentForge-VLM/
 ## Citation
 
 ```bibtex
-@article{agentforge-vlm,
-  title={AgentForge-VLM: Forging Agentic Vision-Language Models through Perceive-Predict-Verify Continual Pre-Training},
+@article{cap-vlm,
+  title={CAP-VLM: Continual Agentic Pre-Training for Vision-Language Models via Perceive-Predict-Verify},
   year={2025}
 }
 ```
