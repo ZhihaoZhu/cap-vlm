@@ -1,8 +1,7 @@
 <div align="center">
 
-<h1>CAP-VLM</h1>
 
-<h3>Continual Agentic Pre-Training for Vision-Language Models<br/>via Perceive-Predict-Verify</h3>
+<h2>Continual Agentic Pre-Training for Vision-Language Models<br/>via Perceive-Predict-Verify</h3>
 
 <p>
 <em>The first framework that instills <strong>agentic visual reasoning</strong> into VLMs<br/>
