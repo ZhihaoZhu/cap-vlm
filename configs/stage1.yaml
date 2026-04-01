@@ -1,0 +1,31 @@
+# PPV-CPT Stage 1: Foundational Perception + Prediction
+# Context: 32K tokens, ~150-200B tokens total
+# Focus: Single-step active perception and state prediction
+
+defaults:
+  - base
+
+stage: 1
+
+model:
+  max_seq_length: 32768
+  max_image_tokens: 4096
+
+data:
+  mixture:
+    apc: 0.40        # Active Perception Chains
+    vstp: 0.40       # Visual State Transition Predictions
+    hvc: 0.10        # Hypothesis-Verification Chains (simple, single-step)
+    general_vl: 0.10 # General VL data (anti-forgetting)
+  per_device_batch_size: 2
+  total_tokens: 200_000_000_000  # 200B tokens
+
+training:
+  learning_rate: 2.0e-5
+  min_learning_rate: 2.0e-6
+  lr_scheduler: "cosine"
+  num_train_epochs: 1
+  output_dir: "checkpoints/stage1"
+
+logging:
+  run_name: "ppv-cpt-stage1"

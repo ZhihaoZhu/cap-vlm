@@ -1,0 +1,35 @@
+# Post-CPT Supervised Fine-Tuning
+# Applied after Stage 2 CPT to specialize for downstream agentic tasks
+
+defaults:
+  - base
+
+stage: sft
+
+model:
+  max_seq_length: 32768
+  max_image_tokens: 4096
+  resume_from: "checkpoints/stage2/final"
+  # Optionally freeze vision encoder during SFT
+  vision_encoder_trainable: false
+
+data:
+  # SFT uses task-specific datasets, not PPV mixture
+  sft_datasets:
+    - name: "agentic_trajectories"
+      weight: 0.5
+    - name: "general_instruction"
+      weight: 0.3
+    - name: "tool_use"
+      weight: 0.2
+  per_device_batch_size: 4
+
+training:
+  learning_rate: 5.0e-6
+  min_learning_rate: 5.0e-7
+  lr_scheduler: "cosine"
+  num_train_epochs: 3
+  output_dir: "checkpoints/sft"
+
+logging:
+  run_name: "ppv-sft"

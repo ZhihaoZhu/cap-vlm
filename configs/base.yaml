@@ -1,0 +1,38 @@
+# PPV-CPT Base Configuration
+# Shared settings inherited by stage-specific configs
+
+model:
+  name: "Qwen/Qwen2-VL-7B-Instruct"
+  vision_encoder_trainable: true
+  llm_trainable: true
+  torch_dtype: "bfloat16"
+  attn_implementation: "flash_attention_2"
+
+data:
+  num_workers: 8
+  pin_memory: true
+  prefetch_factor: 4
+
+training:
+  seed: 42
+  gradient_checkpointing: true
+  gradient_accumulation_steps: 8
+  warmup_ratio: 0.03
+  weight_decay: 0.1
+  adam_beta1: 0.9
+  adam_beta2: 0.95
+  adam_epsilon: 1.0e-8
+  max_grad_norm: 1.0
+  bf16: true
+  tf32: true
+
+logging:
+  project: "ppv-cpt"
+  log_interval: 10
+  save_interval: 1000
+  eval_interval: 2000
+
+deepspeed:
+  stage: 2
+  offload_optimizer: false
+  offload_param: false

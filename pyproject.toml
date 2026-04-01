@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppv-cpt"
+version = "0.1.0"
+description = "Perceive, Predict, Verify: Continual Pre-training for Multimodal Agentic Foundation Models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = [
+    "torch>=2.1.0",
+    "transformers>=4.40.0",
+    "accelerate>=0.30.0",
+    "deepspeed>=0.14.0",
+    "datasets>=2.18.0",
+    "Pillow>=10.0.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.66.0",
+    "wandb>=0.16.0",
+    "einops>=0.7.0",
+]
+
+[project.optional-dependencies]
+synthesis = [
+    "playwright>=1.40.0",
+    "beautifulsoup4>=4.12.0",
+    "opencv-python>=4.9.0",
+]
+eval = [
+    "rouge-score>=0.1.2",
+    "nltk>=3.8.0",
+    "scikit-learn>=1.4.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.3.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["ppv*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

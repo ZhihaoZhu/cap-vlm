@@ -1,0 +1,33 @@
+# PPV-CPT Stage 2: Full Verify-and-Correct Loop
+# Context: 128K tokens, ~80-100B tokens total
+# Focus: Multi-step PPV chains with long-horizon reasoning
+
+defaults:
+  - base
+
+stage: 2
+
+model:
+  max_seq_length: 131072
+  max_image_tokens: 8192
+  # Resume from Stage 1 checkpoint
+  resume_from: "checkpoints/stage1/final"
+
+data:
+  mixture:
+    apc: 0.20        # Active Perception Chains
+    vstp: 0.20       # Visual State Transition Predictions
+    hvc: 0.40        # Hypothesis-Verification Chains (complex, multi-step)
+    general_vl: 0.20 # General VL data (anti-forgetting)
+  per_device_batch_size: 1
+  total_tokens: 100_000_000_000  # 100B tokens
+
+training:
+  learning_rate: 1.0e-5
+  min_learning_rate: 1.0e-6
+  lr_scheduler: "cosine"
+  num_train_epochs: 1
+  output_dir: "checkpoints/stage2"
+
+logging:
+  run_name: "ppv-cpt-stage2"
